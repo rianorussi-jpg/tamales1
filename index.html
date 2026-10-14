@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<meta name="color-scheme" content="only light">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Menú · Tamales y Desayunos</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,800;9..144,900&family=Baloo+2:wght@500;700&display=swap">
@@ -9,9 +10,7 @@
 :root{--bg:#fff1d6;--tx:#3a2113;--mut:#8a6548;--card:#fffaf0;--ln:#3a2113;--red:#d9402a;--grn:#2f9e5b;--yel:#f4b82e;
 --s1:#fff1d6;--s2:#dff0cc;--s3:#ffdce4;--s4:#d9ecf5;--s5:#fff0b3;--s6:#ffd9c7;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a100a;--tx:#fbeccf;--mut:#c7a684;--card:#2c1c12;--ln:#fbeccf;--s1:#22150d;--s2:#1b2a18;--s3:#2e1a21;--s4:#172631;--s5:#2d2610;--s6:#2f1c14}}
-:root[data-theme="dark"]{--bg:#1a100a;--tx:#fbeccf;--mut:#c7a684;--card:#2c1c12;--ln:#fbeccf;--s1:#22150d;--s2:#1b2a18;--s3:#2e1a21;--s4:#172631;--s5:#2d2610;--s6:#2f1c14}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}html{color-scheme:only light;scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--tx);font:500 1.05rem "Baloo 2",Verdana,sans-serif;overflow-x:hidden}
 h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:900;margin:0}
 #bar{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:5px;width:0;background:linear-gradient(90deg,var(--red),var(--yel),var(--grn));z-index:20}
@@ -22,7 +21,6 @@ h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:900;margin:0}
 @keyframes sw{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}
 /* hero */
 .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 20px 80px;overflow:hidden;background:linear-gradient(#ffb36b,#ffe3a8 55%,var(--s1))}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hero{background:linear-gradient(#3b1d2e,#7a3b2a 55%,var(--s1))}}
 .sun{position:absolute;width:260px;height:260px;border-radius:50%;background:#fff3b0;box-shadow:0 0 0 30px #fff3b055,0 0 0 70px #fff3b030;top:18%;animation:rise 2.2s cubic-bezier(.2,.8,.2,1) both}
 @keyframes rise{from{transform:translateY(160px);opacity:0}}
 .hero svg.olla{width:min(300px,76vw);position:relative;z-index:2}
@@ -115,7 +113,7 @@ footer{text-align:center;padding:60px 20px 90px;background:var(--s1);color:var(-
  <path d="M38 41h24" stroke="#5a3418" stroke-width="3" opacity=".5"/>
 </symbol></defs></svg>
 
-<nav id="nav"><a href="#s1"></a><a href="#s2"></a><a href="#s3"></a><a href="#s4"></a><a href="#s5"></a><a href="#s6"></a></nav>
+<nav id="nav"><a href="#s1"></a><a href="#s2"></a><a href="#s3"></a><a href="#s5"></a><a href="#s6"></a><a href="#s4"></a></nav>
 
 <header class="hero" id="top">
  <svg id="pp" viewBox="0 0 400 84" preserveAspectRatio="none"></svg>
@@ -136,9 +134,8 @@ footer{text-align:center;padding:60px 20px 90px;background:var(--s1);color:var(-
 <section class="sh" id="s1"><div class="num">1</div><div class="in-w"><div class="rv"><div class="ch">Capítulo 1</div><h2>Tamales</h2><p class="story">Envueltos a mano, calientitos desde temprano.</p><span class="price">$32</span></div><div class="grid" id="g1"></div></div></section>
 <section class="sh" id="s2"><div class="num">2</div><div class="in-w"><div class="rv"><div class="ch">Capítulo 2</div><h2>Oaxaqueños</h2><p class="story">Cocinados en hoja de plátano, con otro sabor.</p><span class="price">$35</span></div><div class="grid" id="g2"></div></div></section>
 <section class="sh" id="s3"><div class="num">3</div><div class="in-w"><div class="rv"><div class="ch">Capítulo 3</div><h2>Dulces</h2><p class="story">Cada día de la semana, un sabor distinto.</p><span class="price">$32</span><div class="days" id="days"></div><div class="stage" id="stage"></div></div></div></section>
-<section class="sh" id="s4"><div class="num">4</div><div class="in-w"><div class="rv"><div class="ch">Capítulo 4</div><h2>Bebidas</h2><p class="story">Para acompañar. Toca una y mírala bailar.</p></div><div class="grid" id="g4"></div></div></section>
-<section class="sh" id="s5"><div class="num">5</div><div class="in-w"><div class="rv"><div class="ch">Capítulo 5</div><h2>Postres</h2><p class="story">El final dulce de la historia.</p></div><div class="grid" id="g5"></div></div></section>
-<section class="sh" id="s6"><div class="num">6</div><div class="in-w"><div class="rv"><div class="ch">Capítulo 6</div><h2>Chilaquiles</h2><p class="story">Elige cómo los quieres y arma tu plato.</p>
+<section class="sh" id="s5"><div class="num">4</div><div class="in-w"><div class="rv"><div class="ch">Capítulo 4</div><h2>Postres</h2><p class="story">El final dulce de la historia.</p></div><div class="grid" id="g5"></div></div></section>
+<section class="sh" id="s6"><div class="num">5</div><div class="in-w"><div class="rv"><div class="ch">Capítulo 5</div><h2>Chilaquiles</h2><p class="story">Elige cómo los quieres y arma tu plato.</p>
  <svg class="plate d" viewBox="0 0 200 150">
   <ellipse cx="100" cy="88" rx="94" ry="56" fill="#fff" stroke="#3a2113" stroke-width="4"/>
   <ellipse cx="100" cy="84" rx="72" ry="40" fill="#d9402a" stroke="#3a2113" stroke-width="3"/>
@@ -150,6 +147,7 @@ footer{text-align:center;padding:60px 20px 90px;background:var(--s1);color:var(-
   <g class="top" id="t-torta"><ellipse cx="100" cy="66" rx="44" ry="15" fill="#e8b062" stroke="#3a2113" stroke-width="3.5"/><rect x="56" y="66" width="88" height="10" fill="#6aa84f" stroke="#3a2113" stroke-width="2.5"/><ellipse cx="100" cy="80" rx="44" ry="15" fill="#e8b062" stroke="#3a2113" stroke-width="3.5"/></g>
  </svg>
  <div class="chips" id="chips"></div></div></div></section>
+<section class="sh" id="s4"><div class="num">6</div><div class="in-w"><div class="rv"><div class="ch">Capítulo 6</div><h2>Bebidas</h2><p class="story">Para acompañar. Toca una y mírala bailar.</p></div><div class="grid" id="g4"></div></div></section>
 
 <footer><svg class="d" width="110" height="80" viewBox="0 0 100 80" style="--c:#f4d77b"><use href="#tamal"/></svg><p>Gracias por leer nuestra historia.<br>¡Buen provecho!</p></footer>
 <button id="tt" aria-label="Subir" onclick="scrollTo({top:0})">↑</button>
