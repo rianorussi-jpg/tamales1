@@ -142,6 +142,8 @@ html.lock{overflow:hidden}
 .hrs{max-width:420px;margin:0 auto 34px;background:var(--card);border:3px solid var(--ln);border-radius:26px;box-shadow:6px 6px 0 var(--ln);padding:18px 20px;color:var(--tx);text-align:left}
 .hrs h3{font-size:1.5rem;margin-bottom:8px;text-align:center}
 .hr{display:flex;flex-wrap:wrap;gap:4px 14px;padding:8px 0;border-top:2px dashed var(--ln)}.hr span{flex:1 0 100%;font-weight:800;color:var(--red)}.hr b{font-weight:700}
+.addr{position:absolute;bottom:64px;left:50%;transform:translateX(-50%);z-index:2;display:flex;align-items:center;gap:8px;width:max-content;max-width:calc(100% - 40px);text-align:left;font-weight:800;font-size:.95rem;line-height:1.15;background:var(--card);border:3px solid var(--ln);border-radius:18px;padding:7px 14px;box-shadow:3px 3px 0 var(--ln)}
+.hero{padding-bottom:150px!important}
 </style>
 </head>
 <body>
@@ -176,6 +178,7 @@ html.lock{overflow:hidden}
  <h1>Hoy huele a<br><span>tamal</span> recién hecho</h1>
  <p>Desliza y descubre el menú, capítulo por capítulo.</p>
  <div class="op" id="op"></div>
+ <div class="addr"><svg width="16" height="20" viewBox="0 0 16 20" style="flex:none"><path d="M8 1C4.5 1 2 3.6 2 7c0 4.5 6 11 6 11s6-6.5 6-11c0-3.4-2.5-6-6-6z" fill="#d9402a" stroke="#3a2113" stroke-width="1.8" stroke-linejoin="round"/><circle cx="8" cy="7" r="2.2" fill="#fff3de"/></svg><span>Paseos de Zakia Pte. No. 300, local 205<br>Plaza Punto Zakia</span></div>
  <div class="hint">↓ desliza</div>
 </header>
 <div class="mq"><div id="mq"></div></div>
@@ -190,6 +193,7 @@ html.lock{overflow:hidden}
  <div class="hrs rv"><h3>Horario de servicio</h3>
   <div class="hr"><span>Lunes a sábado</span><b>8:30 am – 12:00 pm</b><b>5:00 pm – 9:00 pm</b></div>
   <div class="hr"><span>Domingo</span><b>8:00 am – 12:00 pm</b></div>
+  <div class="hr"><span>Dirección</span><b>Paseos de Zakia Pte. No. 300, local 205, Plaza Punto Zakia</b></div>
  </div>
  <svg class="d" width="110" height="80" viewBox="0 0 100 80" style="--c:#f4d77b"><use href="#tamal"/></svg><p>Gracias por leer nuestra historia.<br>¡Buen provecho!</p>
 </footer>
