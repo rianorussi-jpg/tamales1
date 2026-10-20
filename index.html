@@ -144,6 +144,11 @@ html.lock{overflow:hidden}
 .hr{display:flex;flex-wrap:wrap;gap:4px 14px;padding:8px 0;border-top:2px dashed var(--ln)}.hr span{flex:1 0 100%;font-weight:800;color:var(--red)}.hr b{font-weight:700}
 .addr{position:absolute;bottom:64px;left:50%;transform:translateX(-50%);z-index:2;display:flex;align-items:center;gap:8px;width:max-content;max-width:calc(100% - 40px);text-align:left;font-weight:800;font-size:.95rem;line-height:1.15;background:var(--card);border:3px solid var(--ln);border-radius:18px;padding:7px 14px;box-shadow:3px 3px 0 var(--ln)}
 .hero{padding-bottom:150px!important}
+.gj{position:absolute;top:8px;left:8px;z-index:3;border:3px solid var(--ln);border-radius:14px;background:var(--grn);color:#fff;padding:3px 9px;cursor:pointer;box-shadow:2px 2px 0 var(--ln);font:800 .72rem/1.05 "Baloo 2",sans-serif;text-align:center;transition:background .2s,box-shadow .15s}
+.gj:active{box-shadow:0 0 0 var(--ln)}
+.gj.go{animation:gjp .6s ease-in-out}@keyframes gjp{40%{transform:scale(1.25) rotate(-6deg)}70%{transform:scale(.95) rotate(3deg)}}
+.gj.ok{background:var(--yel);color:var(--ln)}
+.card .gj~svg{margin-top:20px}
 </style>
 </head>
 <body>
@@ -208,7 +213,7 @@ const PR={};
 const low=x=>x[0].toLowerCase()+x.slice(1);
 const AB=k=>`<button class="add" data-k="${k}" aria-label="Agregar al carrito"><span>+</span></button>`;
 const dec=(h,k,pc)=>h.replace(/^(<div class="card rv"[^>]*>)/,'$1'+AB(k)).replace(/<\/div>$/,(pc?`<span class="pc">${pc}</span>`:'')+'</div>');
-const card=(sym,c,n,t,k,pre,price)=>{PR[k]={name:pre+' '+low(n),price};return `<div class="card rv" ${wg}>${AB(k)}<svg class="d" viewBox="0 0 100 80" style="--c:${c}"><use href="#${sym}"/></svg><b>${n}</b><span class="pc">$${price}</span>${t||''}</div>`};
+const card=(sym,c,n,t,k,pre,price)=>{PR[k]={name:pre+' '+low(n),price};const gj=(pre=='Tamal'||pre=='Oaxaqueño');if(gj)PR['g'+k]={name:'Guajolota '+low(pre)+' '+low(n),price:price+5};return `<div class="card rv" ${wg}>${AB(k)}${gj?`<button class="gj" data-k="g${k}" aria-label="Agregar guajolota"><span>Guajolota<br>+$5</span></button>`:''}<svg class="d" viewBox="0 0 100 80" style="--c:${c}"><use href="#${sym}"/></svg><b>${n}</b><span class="pc">$${price}</span>${t||''}</div>`};
 $('#g1').innerHTML=[['Verde de pollo','#8cc96f'],['Verde de cerdo','#5fae5a'],['Rajas con queso','#f6dc7a'],['Mole con pollo','#7a3b25']].map((x,i)=>card('tamal',x[1],x[0],'','t'+i,'Tamal',32)).join('');
 $('#g2').innerHTML=[['Verde de pollo','#8cc96f'],['Verde de cerdo','#5fae5a'],['Mole con pollo','#7a3b25'],['Rojo con pollo','#cc4429','<span class="tag">Sin cerdo</span>']].map((x,i)=>card('hoja',x[1],x[0],x[2],'o'+i,'Oaxaqueño',35)).join('');
 const D=[['Lun','Chocolate con chispas','#6b3a22'],['Mar','Fresa','#ee6f8a'],['Mié','Zarzamora','#6b3a8a'],['Jue','Piñón','#c9a46a'],['Vie','Piña','#f4cf4c'],['Sáb','Guayaba','#f28a9a',1],['Dom','Pasitas','#8a5a3b']];
@@ -255,8 +260,8 @@ function fly(btn,done){const r=btn.getBoundingClientRect(),bar=$('#cartbar');con
  const dx=t.left+t.width/2-(r.left+r.width/2),dy=t.top+t.height/2-(r.top+r.height/2);
  const a=d.animate([{transform:'translate(0,0) scale(1)'},{transform:`translate(${dx*.5}px,${dy*.5-90}px) scale(1.3)`,offset:.5},{transform:`translate(${dx}px,${dy}px) scale(.4)`}],{duration:750,easing:'cubic-bezier(.4,0,.6,1)'});
  a.onfinish=()=>{d.remove();done()};a.oncancel=()=>{d.remove();done()}}
-function addAnim(btn,k,opt){if(btn.dataset.busy)return;btn.dataset.busy=1;const sp=btn.querySelector('span');btn.classList.add('go');
- fly(btn,()=>{addItem(k,opt);btn.classList.remove('go');btn.classList.add('ok');sp.textContent='✓';setTimeout(()=>{btn.classList.remove('ok');sp.textContent='+';delete btn.dataset.busy},900)})}
+function addAnim(btn,k,opt){if(btn.dataset.busy)return;btn.dataset.busy=1;const sp=btn.querySelector('span'),orig=sp.innerHTML;btn.classList.add('go');
+ fly(btn,()=>{addItem(k,opt);btn.classList.remove('go');btn.classList.add('ok');sp.textContent='✓';setTimeout(()=>{btn.classList.remove('ok');sp.innerHTML=orig;delete btn.dataset.busy},900)})}
 const ov=$('#ov'),dlg=$('#dlg');
 const show=h=>{dlg.innerHTML=h;ov.classList.remove('hide');document.documentElement.classList.add('lock')};
 const hide=()=>{ov.classList.add('hide');document.documentElement.classList.remove('lock')};
@@ -275,7 +280,7 @@ function confirmOrder(){const nm=$('#nm').value.trim();S.name=nm;const p=plan(),
  const url='https://wa.me/524425612220?text='+encodeURIComponent(msg);
  window.open(url,'_blank')||(location.href=url);
  show(`<div class="dh"><h3>¡Casi listo!</h3></div><p>Se abrió WhatsApp con tu pedido. Solo falta que presiones <b>enviar</b> para confirmarlo.</p><a class="pri wide" href="${url}" target="_blank" rel="noopener">Abrir WhatsApp otra vez</a><button class="ghost wide" data-fin>Terminar</button>`)}
-document.addEventListener('click',e=>{const b=e.target.closest('.add');if(!b)return;e.stopPropagation();if(b.disabled)return;const k=b.dataset.k;PR[k].opts?optsDlg(b,k):addAnim(b,k)},true);
+document.addEventListener('click',e=>{const b=e.target.closest('.add,.gj');if(!b)return;e.stopPropagation();if(b.disabled)return;const k=b.dataset.k;PR[k].opts?optsDlg(b,k):addAnim(b,k)},true);
 $('#cartbar').onclick=renderCart;
 ov.addEventListener('click',e=>{if(e.target===ov)hide()});
 dlg.addEventListener('click',e=>{const t=e.target.closest('button');if(!t)return;const d=t.dataset;
